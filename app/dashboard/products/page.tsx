@@ -292,7 +292,7 @@ export default function ProductsPage() {
                     Biaya Produksi
                   </th>
                   <th className="px-4 py-3 text-left text-[9px] font-black uppercase tracking-widest text-gray-400">
-                    AI Insight
+                    Insight AI
                   </th>
                   <th className="px-4 py-3 text-right text-[9px] font-black uppercase tracking-widest text-gray-400">
                     Aksi

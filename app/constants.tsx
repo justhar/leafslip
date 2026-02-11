@@ -22,51 +22,51 @@ export const ICONS = {
 export const AIMS = [
   {
     id: 1,
-    text: "Reduce food waste by 40% for Indonesian MSMEs through smart inventory tracking",
+    text: "Kurangi overstocking hingga 40% untuk UMKM Indonesia lewat pemantauan stok cerdas",
   },
   {
     id: 2,
-    text: "Digitize paper receipts into actionable business intelligence",
+    text: "Ubah struk kertas menjadi data bisnis yang bisa ditindaklanjuti",
   },
-  { id: 3, text: "Empower small retailers with enterprise-grade analytics" },
-  { id: 4, text: "Build sustainable supply chains for local communities" },
+  { id: 3, text: "Beri UMKM akses analitik setara bisnis besar" },
+  { id: 4, text: "Bantu arus barang lebih sehat dan efisien" },
 ];
 
 export const BENEFITS = [
-  { id: 1, text: "Real-time stock level monitoring and alerts" },
-  { id: 2, text: "AI-powered expiration date predictions" },
-  { id: 3, text: "Automated reorder recommendations" },
-  { id: 4, text: "Sales pattern analysis and forecasting" },
-  { id: 5, text: "Multi-location inventory synchronization" },
-  { id: 6, text: "Paperless record keeping and compliance" },
+  { id: 1, text: "Pantau stok dan notifikasi kritis secara real-time" },
+  { id: 2, text: "Prediksi risiko menumpuk atau kehabisan barang" },
+  { id: 3, text: "Rekomendasi restok otomatis berbasis penjualan" },
+  { id: 4, text: "Analisis pola penjualan dan proyeksi permintaan" },
+  { id: 5, text: "Sinkronisasi stok lintas lokasi" },
+  { id: 6, text: "Pencatatan digital rapi, siap audit" },
 ];
 
 export const SERVICES = [
   {
     id: 1,
-    title: "Smart Receipt Scanner",
+    title: "Pemindai Struk Cerdas",
     description:
-      "Transform paper receipts into structured digital data instantly. Our AI reads Indonesian receipts with 95%+ accuracy, extracting items, prices, and merchant details automatically.",
-    tag: "AI Vision",
+      "Ubah struk kertas jadi data digital terstruktur dalam hitungan detik. AI kami membaca struk Indonesia dan mengekstrak item, harga, dan detail toko secara otomatis.",
+    tag: "Visi AI",
   },
   {
     id: 2,
-    title: "Waste Analytics Dashboard",
+    title: "Dashboard Anti-Overstock",
     description:
-      "Track inventory turnover and identify slow-moving items before they expire. Get actionable insights to reduce food waste and improve profit margins.",
-    tag: "Intelligence",
+      "Pantau perputaran stok dan temukan produk yang bergerak lambat sebelum menumpuk. Dapatkan insight untuk menekan biaya dan menjaga margin.",
+    tag: "Wawasan",
   },
   {
     id: 3,
-    title: "Stock Recommender",
+    title: "Rekomendasi Stok",
     description:
-      "AI-driven purchasing suggestions based on your sales history and seasonal patterns. Never overstock or run out of popular items again.",
-    tag: "Automation",
+      "Saran belanja berbasis riwayat penjualan dan pola musiman. Hindari stok berlebih dan kehabisan produk terlaris.",
+    tag: "Otomasi",
   },
 ];
 
 export const IMPACT_STATS = [
-  { value: "12,000+", label: "Active Merchants", icon: <Users size={20} /> },
-  { value: "40%", label: "Waste Reduction", icon: <TrendingUp size={20} /> },
-  { value: "3.2M", label: "Receipts Scanned", icon: <Zap size={20} /> },
+  { value: "Scan", label: "Struk Otomatis", icon: <Users size={20} /> },
+  { value: "AI", label: "Rekomendasi Stok", icon: <TrendingUp size={20} /> },
+  { value: "Rapi", label: "Catatan Digital", icon: <Zap size={20} /> },
 ];

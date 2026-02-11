@@ -9,7 +9,7 @@ export default function AgricultureAssistant() {
   >([
     {
       role: "bot",
-      text: "Halo! I am your Leafslip MSME assistant. Need help with stock management or food waste strategies in Indonesia?",
+      text: "Halo! Saya asisten UMKM Leafslip. Butuh bantuan mengelola stok, mencegah overstocking, atau membaca data penjualan?",
     },
   ]);
   const [input, setInput] = useState("");
@@ -39,14 +39,14 @@ export default function AgricultureAssistant() {
         contents: userMsg,
         config: {
           systemInstruction:
-            "You are Leafslip AI, an expert advisor for Indonesian MSMEs. You help small business owners optimize inventory, reduce food waste, and understand their sales data from receipts. Your tone is encouraging, professional, and practical. Use Rupiah (Rp) for currency and mention local Indonesian context where relevant.",
+            "Kamu adalah Leafslip AI, konsultan UMKM di Indonesia. Bantu pemilik usaha mengoptimalkan stok, mencegah overstocking, dan memahami data penjualan dari struk. Gunakan Bahasa Indonesia yang profesional namun santai. Gunakan Rupiah (Rp) dan konteks lokal bila relevan.",
         },
       });
 
       // Directly access .text property from GenerateContentResponse
       const botText =
         response.text ||
-        "Mohon maaf, I couldn't process that. Can you try again?";
+        "Maaf, saya belum bisa memprosesnya. Bisa coba lagi?";
       setMessages((prev) => [...prev, { role: "bot", text: botText }]);
     } catch (error) {
       console.error("AI Error:", error);
@@ -54,7 +54,7 @@ export default function AgricultureAssistant() {
         ...prev,
         {
           role: "bot",
-          text: "Service temporarily unavailable. Please try again later.",
+          text: "Layanan sementara tidak tersedia. Coba lagi nanti ya.",
         },
       ]);
     } finally {
@@ -73,12 +73,10 @@ export default function AgricultureAssistant() {
                 <Leaf className="w-5 h-5" />
               </div>
               <div>
-                <h4 className="font-bold text-sm">Leafslip Advisor</h4>
+                <h4 className="font-bold text-sm">Advisor Leafslip</h4>
                 <div className="flex items-center gap-1.5">
                   <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-                  <span className="text-[10px] text-gray-300">
-                    Active Expert
-                  </span>
+                  <span className="text-[10px] text-gray-300">Aktif</span>
                 </div>
               </div>
             </div>
@@ -118,7 +116,7 @@ export default function AgricultureAssistant() {
                 <div className="bg-white border border-gray-300 rounded-2xl px-4 py-3 shadow-sm flex items-center gap-2">
                   <Loader2 className="w-4 h-4 animate-spin text-[#2D3E2D]" />
                   <span className="text-xs text-gray-400">
-                    Advisor is thinking...
+                    Advisor sedang berpikir...
                   </span>
                 </div>
               </div>
@@ -132,7 +130,7 @@ export default function AgricultureAssistant() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && handleSend()}
-                placeholder="Ask about inventory..."
+                placeholder="Tanya soal stok atau penjualan..."
                 className="flex-1 bg-gray-50 rounded-xl px-4 py-2.5 text-sm outline-none focus:ring-2 ring-[#D9ED92] transition-all"
               />
               <button
@@ -152,7 +150,7 @@ export default function AgricultureAssistant() {
         >
           <MessageCircle className="w-6 h-6" />
           <div className="absolute right-full mr-4 top-1/2 -translate-y-1/2 bg-white text-[#2D3E2D] px-4 py-2 rounded-xl text-xs font-bold shadow-xl border border-gray-300 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-            Digital Advisor Ready
+            Advisor Digital Siap Membantu
           </div>
         </button>
       )}

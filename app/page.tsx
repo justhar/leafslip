@@ -34,10 +34,10 @@ export default function App() {
 
   // Mock user data for Sidebar
   const mockUser = {
-    name: "Demo User",
+    name: "Pengguna Demo",
     email: "demo@leafslip.com",
     avatar: "https://i.pravatar.cc/150?u=demo",
-    role: "MSME Owner",
+    role: "Pemilik UMKM",
   };
 
   return (

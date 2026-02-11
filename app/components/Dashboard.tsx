@@ -129,7 +129,7 @@ export default function Dashboard() {
                 </div>
               </div>
               <p className="text-[9px] font-black uppercase tracking-widest text-gray-400 mb-1">
-                Revenue Hari Ini
+                Omzet Hari Ini
               </p>
               <p className="text-2xl font-black text-[#2D3E2D]">
                 Rp{formatCurrency(stats?.todayRevenue ?? 0)}
@@ -147,7 +147,7 @@ export default function Dashboard() {
                 Items Terjual Hari Ini
               </p>
               <p className="text-2xl font-black text-[#2D3E2D]">
-                {stats?.todaySales ?? 0} <span className="text-sm">items</span>
+                {stats?.todaySales ?? 0} <span className="text-sm">item</span>
               </p>
             </div>
 
@@ -172,7 +172,7 @@ export default function Dashboard() {
                 </div>
               </div>
               <p className="text-[9px] font-black uppercase tracking-widest text-gray-400 mb-1">
-                Cashflow Status
+                Status Arus Kas
               </p>
               <p
                 className={`text-lg font-black uppercase ${
@@ -205,7 +205,7 @@ export default function Dashboard() {
                 </div>
               </div>
               <p className="text-[9px] font-black uppercase tracking-widest text-gray-400 mb-1">
-                Growth Rate (vs Bulan Lalu)
+                Laju Pertumbuhan (vs Bulan Lalu)
               </p>
               <p
                 className={`text-2xl font-black ${
@@ -226,7 +226,7 @@ export default function Dashboard() {
             <div className="bg-white rounded-md border border-gray-300 p-4">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-xs font-black uppercase tracking-[0.2em] text-gray-400">
-                  Revenue Per Hari
+                  Omzet Per Hari
                 </h3>
                 <select
                   value={revenuePeriod}
@@ -235,9 +235,9 @@ export default function Dashboard() {
                   }
                   className="px-3 py-1.5 bg-white border border-gray-300 rounded text-[10px] font-bold text-gray-600 focus:outline-none focus:border-[#2D3E2D] focus:ring-1 focus:ring-[#2D3E2D] transition-all cursor-pointer"
                 >
-                  <option value="weekly">Week</option>
-                  <option value="monthly">Month</option>
-                  <option value="12months">12 Months</option>
+                  <option value="weekly">Mingguan</option>
+                  <option value="monthly">Bulanan</option>
+                  <option value="12months">12 Bulan</option>
                 </select>
               </div>
 
@@ -246,7 +246,7 @@ export default function Dashboard() {
                 <div className="flex items-center gap-2 mb-1">
                   <TrendingUp size={14} className="text-green-600" />
                   <span className="text-[8px] font-black uppercase tracking-widest text-green-700">
-                    AI Insight
+                    Insight AI
                   </span>
                 </div>
                 <p className="text-[10px] leading-relaxed text-green-700">
@@ -279,7 +279,7 @@ export default function Dashboard() {
                     }}
                     formatter={(value: number | undefined) => [
                       `Rp${formatCurrency(value || 0)}`,
-                      "Revenue",
+                      "Omzet",
                     ]}
                   />
                   <Line
@@ -298,7 +298,7 @@ export default function Dashboard() {
             <div className="bg-white rounded-md border border-gray-300 p-4">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-xs font-black uppercase tracking-[0.2em] text-gray-400">
-                  Best Selling Items
+                  Produk Terlaris
                 </h3>
                 <select
                   value={bestSellingPeriod}
@@ -307,9 +307,9 @@ export default function Dashboard() {
                   }
                   className="px-3 py-1.5 bg-white border border-gray-300 rounded text-[10px] font-bold text-gray-600 focus:outline-none focus:border-[#2D3E2D] focus:ring-1 focus:ring-[#2D3E2D] transition-all cursor-pointer"
                 >
-                  <option value="weekly">Week</option>
-                  <option value="monthly">Month</option>
-                  <option value="12months">12 Months</option>
+                  <option value="weekly">Mingguan</option>
+                  <option value="monthly">Bulanan</option>
+                  <option value="12months">12 Bulan</option>
                 </select>
               </div>
 
@@ -318,7 +318,7 @@ export default function Dashboard() {
                 <div className="flex items-center gap-2 mb-1">
                   <Package size={14} className="text-blue-600" />
                   <span className="text-[8px] font-black uppercase tracking-widest text-blue-700">
-                    AI Insight
+                    Insight AI
                   </span>
                 </div>
                 <p className="text-[10px] leading-relaxed text-blue-700">
@@ -352,7 +352,7 @@ export default function Dashboard() {
                       fontSize: "12px",
                     }}
                     formatter={(value: number | undefined) => [
-                      `${value || 0} items`,
+                      `${value || 0} item`,
                       "Terjual",
                     ]}
                   />

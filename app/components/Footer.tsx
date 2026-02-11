@@ -24,11 +24,11 @@ export default function Footer({ scrollToTop }: FooterProps) {
 
             <div className="space-y-4 max-w-md">
               <h3 className="text-md font-light leading-snug">
-                Building a{" "}
+                Membangun masa depan UMKM Indonesia yang{" "}
                 <span className="text-[#D9ED92] font-medium italic">
-                  paperless & waste-free
-                </span>{" "}
-                future for Indonesian small businesses.
+                  rapi, hemat, dan tanpa tumpukan stok
+                </span>
+                .
               </h3>
             </div>
             {/* 
@@ -57,7 +57,7 @@ export default function Footer({ scrollToTop }: FooterProps) {
                   onClick={scrollToTop}
                   className="flex items-center gap-2 bg-white/5 border border-white/20 px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-white/10 transition-all"
                 >
-                  Back to Top <ArrowUp size={14} />
+                  Kembali ke Atas <ArrowUp size={14} />
                 </button>
               </div>
             </div>

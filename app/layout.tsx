@@ -11,8 +11,8 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "LeafSlip - Smart Agriculture Tracking",
-  description: "Agriculture receipt scanning and stock management",
+  title: "LeafSlip - Cerdas Kelola Stok UMKM",
+  description: "Pemindaian struk dan rekomendasi AI untuk menekan overstocking UMKM",
 };
 
 export default function RootLayout({
@@ -21,7 +21,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={plusJakartaSans.variable}>
+    <html lang="id" className={plusJakartaSans.variable}>
       <body className="font-sans antialiased">
         <Providers>{children}</Providers>
       </body>

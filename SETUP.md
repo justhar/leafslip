@@ -20,7 +20,7 @@
 1. Go to https://console.developers.google.com/apis/credentials
 2. Create a new OAuth 2.0 Client ID
 3. Add authorized redirect URIs:
-   - Development: `http://localhost:3000/api/auth/callback/google`
+   - Development: `https://leafslip.vercel.app/api/auth/callback/google`
    - Production: `https://your-domain.vercel.app/api/auth/callback/google`
 4. Copy the Client ID and Client Secret
 
@@ -38,7 +38,7 @@
    DATABASE_URL="your-neon-pooled-connection-string"
    AUTH_GOOGLE_ID="your-google-client-id"
    AUTH_GOOGLE_SECRET="your-google-client-secret"
-   NEXTAUTH_URL="http://localhost:3000"
+   NEXTAUTH_URL="https://leafslip.vercel.app"
    ```
 
 3. Generate AUTH_SECRET:
@@ -66,11 +66,11 @@ This creates:
 npm run dev
 ```
 
-Visit http://localhost:3000
+Visit https://leafslip.vercel.app
 
 ### 6. Sign In and Seed Data
 
-1. Click "Sign In with Google" at http://localhost:3000/signin
+1. Click "Sign In with Google" at https://leafslip.vercel.app/signin
 2. Complete Google OAuth flow
 3. After signing in, find your user ID:
    - Go to Neon Console → SQL Editor
@@ -95,7 +95,7 @@ This will populate your account with:
 
 ### 7. Explore the Dashboard
 
-Visit http://localhost:3000/dashboard to see:
+Visit https://leafslip.vercel.app/dashboard to see:
 
 - ✅ User-specific receipt history
 - ✅ Protected routes with middleware
@@ -173,7 +173,7 @@ Visit http://localhost:3000/dashboard to see:
 
 - Check callback URLs match in Google Console
 - Verify `NEXTAUTH_URL` is correct
-- For local dev, use `http://localhost:3000` (no trailing slash)
+- For local dev, use `https://leafslip.vercel.app` (no trailing slash)
 
 ## 📝 Notes
 

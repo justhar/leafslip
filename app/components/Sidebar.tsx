@@ -34,21 +34,21 @@ export default function Sidebar({
   const { data: session, status } = useSession();
 
   const displayUser = session?.user || {
-    name: "Guest",
-    email: "guest@leafslip.com",
+    name: "Tamu",
+    email: "tamu@leafslip.com",
     image: null,
   };
 
   const menuItems = [
     {
       id: "dashboard" as AppView,
-      label: "Dashboard",
+      label: "Dasbor",
       icon: <LayoutDashboard size={20} />,
       href: "/dashboard",
     },
     {
       id: "scanner" as AppView,
-      label: "Scanner",
+      label: "Pemindai",
       icon: <Scan size={20} />,
       href: "/dashboard/scanner",
     },
@@ -66,7 +66,7 @@ export default function Sidebar({
     },
     {
       id: "chatbot" as AppView,
-      label: "AI Chat",
+      label: "Chat AI",
       icon: <MessageSquare size={20} />,
       href: "/dashboard/chat",
     },

@@ -10,23 +10,24 @@ export default function Hero() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center h-full">
             <div className="lg:col-span-7">
               <span className="inline-block bg-[#D9ED92] text-[#2D3E2D] px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-6">
-                Digitizing Indonesian MSMEs
+                Digitalisasi UMKM Indonesia
               </span>
               <h1 className="text-6xl font-bold leading-[0.95] mb-4 tracking-tighter">
                 Leafslip:
                 <br />
-                <span className="text-[#D9ED92]">Paperless</span> Inventory.
+                <span className="text-[#D9ED92]">Anti-Overstock</span> UMKM.
               </h1>
               <p className="text-md md:text-md text-gray-300 font-light leading-relaxed mb-10 max-w-lg">
-                Stop losing money to food waste. Turn paper receipts into smart
-                digital records and get AI stock recommendations in seconds.
+                Hentikan stok menumpuk yang bikin rugi. Ubah struk kertas jadi
+                catatan digital dan dapatkan rekomendasi stok dari AI dalam
+                hitungan detik.
               </p>
               <div className="flex flex-wrap items-center gap-4">
                 <Link
                   href="/dashboard"
                   className="bg-[#D9ED92] text-[#2D3E2D] px-8 py-4 rounded-full font-bold transition-transform hover:scale-105 shadow-lg shadow-lime-500/10 inline-block"
                 >
-                  Scan Your First Receipt
+                  Scan Struk Pertamamu
                 </Link>
                 <div className="flex -space-x-3">
                   {[1, 2, 3, 4].map((i) => (

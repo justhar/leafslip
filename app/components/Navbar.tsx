@@ -27,53 +27,13 @@ export default function Navbar({
           <h1 className="font-extrabold">LEAFSLIP</h1>
         </div>
 
-        {/* Desktop Links */}
-        <div className="hidden lg:flex items-center gap-8 text-xs font-bold uppercase tracking-widest">
-          <button
-            onClick={() => onNavigate("scanner")}
-            className={`transition-all ${
-              currentView === "scanner"
-                ? "text-[#2D3E2D] border-b-2 border-[#D9ED92]"
-                : "text-gray-400 hover:text-[#2D3E2D]"
-            }`}
-          >
-            Scanner
-          </button>
-          <button
-            onClick={() => onNavigate("recommender")}
-            className={`transition-all ${
-              currentView === "recommender"
-                ? "text-[#2D3E2D] border-b-2 border-[#D9ED92]"
-                : "text-gray-400 hover:text-[#2D3E2D]"
-            }`}
-          >
-            Waste Tracker
-          </button>
-          <button
-            onClick={() => onNavigate("history")}
-            className={`transition-all ${
-              currentView === "history"
-                ? "text-[#2D3E2D] border-b-2 border-[#D9ED92]"
-                : "text-gray-400 hover:text-[#2D3E2D]"
-            }`}
-          >
-            History
-          </button>
-        </div>
-
         <div className="flex items-center gap-3">
           <div className="hidden sm:flex items-center gap-2">
-            <button
-              onClick={() => onNavigate("chatbot")}
-              className="p-2 rounded-lg bg-gray-100 text-gray-500 hover:bg-gray-200 transition-colors"
-            >
-              <Mail size={16} />
-            </button>
             <Link
               href="/dashboard"
               className="px-4 py-2 rounded-lg bg-[#D9ED92] text-[#2D3E2D] font-bold text-xs hover:scale-105 transition-transform shadow-sm"
             >
-              Start Scanning
+              Mulai Scan
             </Link>
           </div>
 

@@ -11,16 +11,16 @@ export default function ServicesSection() {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <div className="space-y-4">
             <span className="text-xs font-bold tracking-[0.2em] text-gray-400 uppercase">
-              OUR EXPERTISE
+              KEUNGGULAN KAMI
             </span>
             <h2 className="text-4xl md:text-5xl font-bold leading-tight">
-              Explore More of
+              Jelajahi Layanan
               <br />
-              Our Services
+              Leafslip
             </h2>
           </div>
           <button className="bg-transparent border border-gray-200 px-6 py-2.5 rounded-full font-bold text-sm hover:bg-gray-50 transition-colors">
-            ALL SERVICES
+            SEMUA LAYANAN
           </button>
         </div>
 

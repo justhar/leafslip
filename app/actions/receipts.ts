@@ -217,7 +217,7 @@ export async function extractReceiptItems(imageDataUrl: string) {
         content: [
           {
             type: "text",
-            text: "Extract items from this receipt image. Return JSON with items: [{ name, price, quantity }]. price is the per-item price, quantity is an integer.",
+            text: "Ekstrak item dari gambar struk ini. Kembalikan JSON dengan items: [{ name, price, quantity }]. price adalah harga per item, quantity adalah angka bulat.",
           },
           {
             type: "image",

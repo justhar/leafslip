@@ -68,7 +68,7 @@ export default function ReceiptScanner({
       streamRef.current = stream;
       setIsCameraActive(true);
     } catch (err) {
-      alert("Could not access camera. Please check permissions.");
+      alert("Tidak bisa mengakses kamera. Periksa izin perangkat.");
     }
   };
 
@@ -124,7 +124,7 @@ export default function ReceiptScanner({
         category: "Other",
       });
     } catch (error) {
-      alert("Failed to process receipt. Try a clearer photo.");
+      alert("Gagal memproses struk. Coba foto yang lebih jelas.");
     } finally {
       setIsProcessing(false);
     }
@@ -274,7 +274,7 @@ export default function ReceiptScanner({
                 <tr className="text-[8px] font-black text-gray-400 uppercase tracking-[0.2em]">
                   <th className="px-3 py-2">Daftar Item</th>
                   <th className="px-2 py-2 w-12 text-center">Qty</th>
-                  <th className="px-2 py-2 w-24 text-right">Price</th>
+                  <th className="px-2 py-2 w-24 text-right">Harga</th>
                   <th className="px-3 py-2 w-8"></th>
                 </tr>
               </thead>
@@ -371,7 +371,7 @@ export default function ReceiptScanner({
                 className="flex items-center gap-1.5 px-3 py-1.5 text-[10px] font-bold text-gray-500 hover:text-gray-800 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 <RotateCcw size={12} />
-                Rescan
+                Scan Ulang
               </button>
               <button
                 onClick={handleSave}
@@ -454,7 +454,7 @@ export default function ReceiptScanner({
                 className="flex items-center gap-1.5 px-3 py-1.5 border border-gray-300 rounded-md text-[10px] font-bold text-gray-600 hover:bg-gray-50 transition-colors"
               >
                 <Upload size={12} />
-                Upload
+                Unggah
               </button>
               <button
                 onClick={startCamera}

@@ -175,20 +175,20 @@ const generateInsights = async (params: {
     return buildFallbackInsights(params.growthRate, params.bestSellingWeekly);
   }
 
-  const prompt = `You are an MSME retail assistant. Write two short insights in Indonesian (max 2 sentences each).
+  const prompt = `Kamu adalah asisten ritel UMKM. Tulis dua insight singkat dalam Bahasa Indonesia (maksimal 2 kalimat per insight).
 
-Metrics:
-- Revenue today: Rp${params.todayRevenue}
-- Items sold today: ${params.todaySales}
-- Growth rate (vs last month): ${params.growthRate}%
-- Cashflow change: Rp${params.cashflowAmount}
-- Best selling items this week: ${params.bestSellingWeekly
+Metrik:
+- Omzet hari ini: Rp${params.todayRevenue}
+- Item terjual hari ini: ${params.todaySales}
+- Pertumbuhan (vs bulan lalu): ${params.growthRate}%
+- Perubahan arus kas: Rp${params.cashflowAmount}
+- Produk terlaris minggu ini: ${params.bestSellingWeekly
     .map((row) => `${row.name} (${row.sold})`)
     .join(", ")}
 
-Output format:
-RevenueInsight: <text>
-BestSellingInsight: <text>
+Format output:
+RevenueInsight: <teks>
+BestSellingInsight: <teks>
 `;
 
   try {

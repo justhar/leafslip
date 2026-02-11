@@ -17,15 +17,14 @@ export default function SignInPage() {
               Selamat Datang di LeafSlip
             </h1>
             <p className="text-xs text-gray-500 uppercase tracking-widest font-bold">
-              Smart Agriculture Tracking
+              Pemindaian Struk & Rekomendasi Stok
             </p>
           </div>
 
           {/* Description */}
           <div className="text-center space-y-2">
             <p className="text-sm text-gray-600">
-              Kelola penjualan, stok, dan keuangan usaha pertanian Anda dengan
-              mudah
+              Kelola penjualan dan stok UMKM Anda dengan lebih rapi dan cepat
             </p>
           </div>
 

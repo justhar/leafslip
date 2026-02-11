@@ -39,7 +39,7 @@ export default function StockInsights({ receipts }: StockInsightsProps) {
         recommendations.push({
           itemName: key,
           action: "Reduce",
-          reason: "Lambat; risiko kedaluwarsa.",
+          reason: "Perputaran lambat; berisiko menumpuk.",
           confidence: 0.81,
         });
     });
@@ -52,7 +52,7 @@ export default function StockInsights({ receipts }: StockInsightsProps) {
     <div className="bg-white p-4 md:p-8 lg:p-12 h-full flex flex-col min-h-[500px] animate-in fade-in">
       <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
         <h3 className="text-xs font-black uppercase tracking-[0.2em] text-[#2D3E2D] flex items-center gap-2">
-          Waste Tracker
+          Rekomendasi Stok
         </h3>
 
         <div className="flex bg-gray-50 p-0.5 rounded border border-gray-300">
@@ -66,7 +66,11 @@ export default function StockInsights({ receipts }: StockInsightsProps) {
                   : "text-gray-400 hover:text-gray-600"
               }`}
             >
-              {p}
+              {p === "weekly"
+                ? "mingguan"
+                : p === "monthly"
+                  ? "bulanan"
+                  : "tahunan"}
             </button>
           ))}
         </div>
@@ -97,7 +101,7 @@ export default function StockInsights({ receipts }: StockInsightsProps) {
                       : "bg-orange-50 text-orange-600"
                   }`}
                 >
-                  {rec.action}
+                  {rec.action === "Restock" ? "Restok" : "Kurangi"}
                 </span>
               </div>
               <p className="text-[10px] text-gray-400 leading-relaxed mb-3">
@@ -110,7 +114,7 @@ export default function StockInsights({ receipts }: StockInsightsProps) {
                   ) : (
                     <TrendingDown size={10} />
                   )}
-                  {Math.round(rec.confidence * 100)}% Confidence
+                  {Math.round(rec.confidence * 100)}% Keyakinan
                 </div>
               </div>
             </div>
@@ -120,7 +124,7 @@ export default function StockInsights({ receipts }: StockInsightsProps) {
 
       <div className="mt-8 pt-4 border-t border-gray-50">
         <p className="text-[8px] text-gray-300 uppercase font-black tracking-[0.2em] text-center">
-          Leafslip Intelligence Predictor
+          Prediktor Cerdas Leafslip
         </p>
       </div>
     </div>

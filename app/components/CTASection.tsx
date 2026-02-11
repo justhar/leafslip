@@ -8,8 +8,8 @@ export default function CTASection() {
         {/* Background Image */}
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
-            alt="Local Indonesian Market"
+            src="https://images.unsplash.com/photo-1515168833906-d2a3b82b302a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
+            alt="Toko ritel UMKM"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-[#2D3E2D]/80 backdrop-blur-[2px]"></div>
@@ -18,20 +18,21 @@ export default function CTASection() {
         {/* Content */}
         <div className="relative z-10 px-6 max-w-2xl text-white">
           <span className="inline-block border border-[#D9ED92]/50 text-[#D9ED92] px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest mb-6 backdrop-blur-md">
-            JOIN THE 12,000+ MERCHANTS
+            BERGABUNG DENGAN 12.000+ UMKM
           </span>
           <h2 className="text-4xl md:text-6xl font-bold mb-6 tracking-tighter">
-            Ready to Ditch the Paper Records?
+            Siap Tinggalkan Pencatatan Manual?
           </h2>
           <p className="text-lg text-gray-200 mb-10 font-light leading-relaxed">
-            Protect your business from losses, minimize food waste, and build a
-            modern supply chain with Leafslip's AI-powered inventory tools.
+            Lindungi bisnis dari stok menumpuk, optimalkan perputaran barang,
+            dan gunakan rekomendasi AI Leafslip untuk keputusan belanja yang
+            lebih tepat.
           </p>
           <Link
             href="/dashboard"
             className="bg-[#D9ED92] text-[#2D3E2D] px-10 py-4 rounded-full font-bold text-lg hover:brightness-110 transition-all shadow-2xl inline-block"
           >
-            Join Leafslip Today
+            Mulai Pakai Leafslip
           </Link>
         </div>
       </div>
