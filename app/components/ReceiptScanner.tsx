@@ -22,6 +22,14 @@ interface ReceiptScannerProps {
 export default function ReceiptScanner({
   onReceiptProcessed,
 }: ReceiptScannerProps) {
+  const formatRupiah = (value: number) =>
+    new Intl.NumberFormat("id-ID").format(Math.round(value || 0));
+
+  const parseRupiah = (value: string) => {
+    const digits = value.replace(/[^0-9]/g, "");
+    return digits ? Number(digits) : 0;
+  };
+
   const [isProcessing, setIsProcessing] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [saveError, setSaveError] = useState<string | null>(null);
@@ -132,10 +140,14 @@ export default function ReceiptScanner({
 
   const updateItem = (index: number, field: keyof ReceiptItem, value: any) => {
     if (!pendingReceipt) return;
-    const normalizedValue =
-      typeof value === "number" && Number.isFinite(value) ? value : 0;
     const newItems = [...pendingReceipt.items];
-    newItems[index] = { ...newItems[index], [field]: normalizedValue };
+    if (field === "name") {
+      newItems[index] = { ...newItems[index], name: String(value) };
+    } else {
+      const normalizedValue =
+        typeof value === "number" && Number.isFinite(value) ? value : 0;
+      newItems[index] = { ...newItems[index], [field]: normalizedValue };
+    }
     if (field === "quantity" || field === "unitPrice") {
       newItems[index].total =
         newItems[index].quantity * newItems[index].unitPrice;
@@ -309,16 +321,11 @@ export default function ReceiptScanner({
                     </td>
                     <td className="px-2 py-1.5">
                       <input
-                        type="number"
-                        value={
-                          Number.isFinite(item.unitPrice) ? item.unitPrice : ""
-                        }
+                        type="text"
+                        inputMode="numeric"
+                        value={formatRupiah(item.unitPrice)}
                         onChange={(e) =>
-                          updateItem(
-                            idx,
-                            "unitPrice",
-                            e.target.value === "" ? 0 : Number(e.target.value),
-                          )
+                          updateItem(idx, "unitPrice", parseRupiah(e.target.value))
                         }
                         className="w-full bg-transparent text-[11px] text-right font-bold text-[#2D3E2D] outline-none"
                       />
@@ -353,7 +360,7 @@ export default function ReceiptScanner({
                 Subtotal
               </span>
               <span className="text-base font-black text-[#2D3E2D]">
-                Rp{pendingReceipt.grandTotal.toLocaleString()}
+                Rp{formatRupiah(pendingReceipt.grandTotal)}
               </span>
               {saveError ? (
                 <span className="block text-[10px] text-red-500 mt-1">

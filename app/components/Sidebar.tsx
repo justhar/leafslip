@@ -42,7 +42,7 @@ export default function Sidebar({
   const menuItems = [
     {
       id: "dashboard" as AppView,
-      label: "Dasbor",
+      label: "Dashboard",
       icon: <LayoutDashboard size={20} />,
       href: "/dashboard",
     },
