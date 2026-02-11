@@ -38,7 +38,7 @@ export default function FullChatbot() {
         ...messages,
         { role: "user", text: userMsg },
       ]
-        .map((message) => ({
+        .map((message): ChatMessage => ({
           role: message.role === "bot" ? "assistant" : "user",
           content: message.text,
         }))
