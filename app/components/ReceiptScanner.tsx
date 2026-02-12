@@ -38,11 +38,45 @@ export default function ReceiptScanner({
   const [pendingReceipt, setPendingReceipt] = useState<ScannedReceipt | null>(
     null,
   );
+  const [lastScanAt, setLastScanAt] = useState<number | null>(null);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const streamRef = useRef<MediaStream | null>(null);
+
+  const compressImage = async (dataUrl: string) => {
+    const img = new Image();
+    const loadImage = () =>
+      new Promise<void>((resolve, reject) => {
+        img.onload = () => resolve();
+        img.onerror = () => reject(new Error("Gagal memuat gambar"));
+      });
+
+    img.src = dataUrl;
+    await loadImage();
+
+    const maxWidth = 1280;
+    const maxHeight = 1280;
+    const ratio = Math.min(
+      maxWidth / img.width,
+      maxHeight / img.height,
+      1,
+    );
+    const targetWidth = Math.round(img.width * ratio);
+    const targetHeight = Math.round(img.height * ratio);
+
+    const canvas = document.createElement("canvas");
+    canvas.width = targetWidth;
+    canvas.height = targetHeight;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) {
+      return dataUrl;
+    }
+
+    ctx.drawImage(img, 0, 0, targetWidth, targetHeight);
+    return canvas.toDataURL("image/jpeg", 0.7);
+  };
 
   useEffect(() => {
     if (isCameraActive && videoRef.current && streamRef.current) {
@@ -100,10 +134,17 @@ export default function ReceiptScanner({
   };
 
   const processImage = async (base64Data: string) => {
+    const now = Date.now();
+    if (lastScanAt && now - lastScanAt < 5000) {
+      alert("Tunggu sebentar sebelum scan lagi ya.");
+      return;
+    }
     setIsProcessing(true);
     setSaveError(null);
+    setLastScanAt(now);
     try {
-      const result = await extractReceiptItems(base64Data);
+      const compressed = await compressImage(base64Data);
+      const result = await extractReceiptItems(compressed);
       const items: ReceiptItem[] = result.items.map((item) => {
         const quantity = Number(item.quantity);
         const unitPrice = Number(item.price);
