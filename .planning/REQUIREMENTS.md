@@ -53,23 +53,23 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| OPT-01 | TBD | Pending |
-| OPT-02 | TBD | Pending |
-| OPT-03 | TBD | Pending |
-| OPT-04 | TBD | Pending |
-| MARKET-01 | TBD | Pending |
-| MARKET-02 | TBD | Pending |
-| MARKET-03 | TBD | Pending |
-| MARKET-04 | TBD | Pending |
-| GUEST-01 | TBD | Pending |
-| GUEST-02 | TBD | Pending |
-| GUEST-03 | TBD | Pending |
-| GUEST-04 | TBD | Pending |
+| OPT-01 | Phase 1 | Pending |
+| OPT-02 | Phase 2 | Pending |
+| OPT-03 | Phase 2 | Pending |
+| OPT-04 | Phase 2 | Pending |
+| MARKET-01 | Phase 1 | Pending |
+| MARKET-02 | Phase 3 | Pending |
+| MARKET-03 | Phase 3 | Pending |
+| MARKET-04 | Phase 4 | Pending |
+| GUEST-01 | Phase 4 | Pending |
+| GUEST-02 | Phase 1 | Pending |
+| GUEST-03 | Phase 3 | Pending |
+| GUEST-04 | Phase 4 | Pending |
 
 **Coverage:**
 - v1 requirements: 12 total
-- Mapped to phases: 0
-- Unmapped: 12 ⚠️
+- Mapped to phases: 12
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-05-08*
