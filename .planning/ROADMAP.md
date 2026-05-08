@@ -17,7 +17,7 @@
 **Plans**: 4 plans in 4 sequential waves
 - [x] 01-01-PLAN.md — Wave 1: Audit AI callsites & create instrumentation utilities (2 tasks)
 - [x] 01-02-PLAN.md — Wave 2: Instrument all AI actions (2 tasks, depends on 01-01)
-- [ ] 01-03-PLAN.md — Wave 3: Create database schema & generate migrations (2 tasks)
+- [x] 01-03-PLAN.md — Wave 3: Create database schema & generate migrations (2 tasks)
 - [ ] 01-04-PLAN.md — Wave 4: Establish baseline metrics (1 task, depends on 01-03)
 
 ### Phase 2: Core AI Optimization Application
