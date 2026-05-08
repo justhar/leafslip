@@ -2,12 +2,13 @@
 
 import { auth } from "@/auth";
 import { getDb } from "@/db";
-import { products, receiptItems, receipts } from "@/db/schema";
-import { and, desc, eq, gte } from "drizzle-orm";
+import { products, receiptItems, receipts, aiInsights } from "@/db/schema";
+import { and, desc, eq, gte, inArray } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 import { generateObject } from "ai";
 import { google } from "@ai-sdk/google";
 import { z } from "zod";
+import { measureApiCall } from "@/app/lib/ai-instrumentation";
 
 type InsightAction = "restock" | "monitor" | "reduce" | "unknown";
 
@@ -88,6 +89,10 @@ export async function getProducts() {
   }));
 }
 
+/**
+ * Generate product insights with token tracking.
+ * Estimated token cost: ~1000 tokens avg, DB cached but newly computed calls logged.
+ */
 export async function getProductInsights() {
   const session = await auth();
   if (!session?.user?.id) {
@@ -160,8 +165,30 @@ export async function getProductInsights() {
       avgDailyDemand: Number(avgDailyDemand.toFixed(2)),
       action,
       stockRange,
+      eligibleForAi: totalPurchased > 0,
     };
   });
+
+  const productIds = baseInsights.map((item) => Number(item.productId));
+  const cacheSince = new Date(Date.now() - 24 * 60 * 60 * 1000);
+  const cachedInsights = await db
+    .select({
+      productId: aiInsights.productId,
+      action: aiInsights.action,
+      stockRange: aiInsights.stockRange,
+      recommendation: aiInsights.recommendation,
+      createdAt: aiInsights.createdAt,
+    })
+    .from(aiInsights)
+    .where(and(inArray(aiInsights.productId, productIds), gte(aiInsights.createdAt, cacheSince)))
+    .orderBy(desc(aiInsights.createdAt));
+
+  const cachedMap = new Map<number, typeof cachedInsights[number]>();
+  for (const row of cachedInsights) {
+    if (!cachedMap.has(row.productId)) {
+      cachedMap.set(row.productId, row);
+    }
+  }
 
   const fallback = baseInsights.map((item) => ({
     productId: item.productId,
@@ -176,7 +203,17 @@ export async function getProductInsights() {
   }));
 
   if (!process.env.GOOGLE_GENERATIVE_AI_API_KEY) {
-    return fallback;
+    return fallback.map((item) => {
+      const cached = cachedMap.get(Number(item.productId));
+      return cached
+        ? {
+            productId: item.productId,
+            action: (cached.action as InsightAction) ?? item.action,
+            stockRange: cached.stockRange ?? item.stockRange,
+            message: cached.recommendation ?? item.message,
+          }
+        : item;
+    });
   }
 
   const schema = z.object({
@@ -188,12 +225,30 @@ export async function getProductInsights() {
     ),
   });
 
-  const prompt = `You are a retail assistant. Create a short Indonesian insight for each product (max 1 sentence). Use the provided action and stockRange. Mention totalPurchased or avgDailyDemand when helpful. Do not add extra products.
+  const aiCandidates = baseInsights.filter(
+    (item) => item.eligibleForAi && !cachedMap.has(Number(item.productId)),
+  );
+
+  if (aiCandidates.length === 0) {
+    return fallback.map((item) => {
+      const cached = cachedMap.get(Number(item.productId));
+      return cached
+        ? {
+            productId: item.productId,
+            action: (cached.action as InsightAction) ?? item.action,
+            stockRange: cached.stockRange ?? item.stockRange,
+            message: cached.recommendation ?? item.message,
+          }
+        : item;
+    });
+  }
+
+  const prompt = `Kamu adalah asisten ritel UMKM. Buat insight singkat Bahasa Indonesia untuk setiap produk (maks 1 kalimat). Gunakan action dan stockRange yang diberikan. Sebut totalPurchased atau avgDailyDemand bila relevan. Jangan menambah produk baru.
 
 Time window: 30 days.
 
 Products:
-${baseInsights
+${aiCandidates
   .map(
     (item) =>
       `- productId: ${item.productId}, name: ${item.name}, stock: ${item.stock}, totalPurchased: ${item.totalPurchased}, avgDailyDemand: ${item.avgDailyDemand}, action: ${item.action}, stockRange: ${item.stockRange} unit`,
@@ -203,22 +258,55 @@ ${baseInsights
 Return JSON: { insights: [{ productId, message }] }`;
 
   try {
-    const result = await generateObject({
-      model: google("gemini-2.5-flash"),
-      schema,
-      prompt,
-    });
+    const result = await measureApiCall(
+      () =>
+        generateObject({
+          model: google("gemini-2.5-flash"),
+          schema,
+          prompt,
+          maxRetries: 0,
+        }),
+      "product_insights",
+      session.user.id,
+      "gemini-2.5-flash",
+    );
 
     const messageMap = new Map(
       result.object.insights.map((item) => [item.productId, item.message]),
     );
 
-    return baseInsights.map((item, index) => ({
-      productId: item.productId,
-      action: item.action,
-      stockRange: item.stockRange,
-      message: messageMap.get(item.productId) ?? fallback[index].message,
-    }));
+    const insertRows = aiCandidates
+      .map((item) => {
+        const message = messageMap.get(item.productId);
+        if (!message) return null;
+        return {
+          productId: Number(item.productId),
+          action: item.action,
+          recommendation: message,
+          stockRange: item.stockRange,
+        };
+      })
+      .filter(Boolean) as Array<{
+      productId: number;
+      action: InsightAction;
+      recommendation: string;
+      stockRange: string;
+    }>;
+
+    if (insertRows.length > 0) {
+      await db.insert(aiInsights).values(insertRows);
+    }
+
+    return baseInsights.map((item, index) => {
+      const cached = cachedMap.get(Number(item.productId));
+      const message = messageMap.get(item.productId);
+      return {
+        productId: item.productId,
+        action: item.action,
+        stockRange: item.stockRange,
+        message: message ?? cached?.recommendation ?? fallback[index].message,
+      };
+    });
   } catch (error) {
     return fallback;
   }

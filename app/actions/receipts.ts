@@ -8,6 +8,14 @@ import { revalidatePath } from "next/cache";
 import { generateObject } from "ai";
 import { google } from "@ai-sdk/google";
 import { z } from "zod";
+import { createHash } from "crypto";
+import { measureApiCall } from "@/app/lib/ai-instrumentation";
+
+const receiptAiCache = new Map<
+  string,
+  { object: { items: Array<{ name: string; price: number; quantity: number }> }; expiresAt: number }
+>();
+const receiptAiLastCall = new Map<string, number>();
 
 export async function getReceipts() {
   const session = await auth();
@@ -181,11 +189,22 @@ export async function createReceipt(data: {
   };
 }
 
+/**
+ * Extract items from receipt image via OCR.
+ * Estimated token cost: ~1750 tokens avg (50% cached), vision-heavy.
+ */
 export async function extractReceiptItems(imageDataUrl: string) {
   const session = await auth();
   if (!session?.user?.id) {
     throw new Error("Unauthorized");
   }
+
+  const now = Date.now();
+  const lastCall = receiptAiLastCall.get(session.user.id) ?? 0;
+  if (now - lastCall < 5000) {
+    throw new Error("AI_RATE_LIMIT");
+  }
+  receiptAiLastCall.set(session.user.id, now);
 
   if (!imageDataUrl.startsWith("data:")) {
     throw new Error("Invalid image data");
@@ -194,6 +213,12 @@ export async function extractReceiptItems(imageDataUrl: string) {
   const base64Payload = imageDataUrl.split(",")[1];
   if (!base64Payload) {
     throw new Error("Invalid image data");
+  }
+
+  const hash = createHash("sha256").update(base64Payload).digest("hex");
+  const cached = receiptAiCache.get(hash);
+  if (cached && cached.expiresAt > now) {
+    return cached.object;
   }
 
   const schema = z.object({
@@ -208,27 +233,48 @@ export async function extractReceiptItems(imageDataUrl: string) {
       .min(1),
   });
 
-  const result = await generateObject({
-    model: google("gemini-2.5-flash"),
-    schema,
-    messages: [
-      {
-        role: "user",
-        content: [
-          {
-            type: "text",
-            text: "Ekstrak item dari gambar struk ini. Kembalikan JSON dengan items: [{ name, price, quantity }]. price adalah harga per item, quantity adalah angka bulat.",
-          },
-          {
-            type: "image",
-            image: Buffer.from(base64Payload, "base64"),
-          },
-        ],
-      },
-    ],
-  });
+  try {
+    const result = await measureApiCall(
+      () =>
+        generateObject({
+          model: google("gemini-2.5-flash"),
+          schema,
+          maxRetries: 0,
+          messages: [
+            {
+              role: "user",
+              content: [
+                {
+                  type: "text",
+                  text: "Ekstrak item dari gambar struk ini. Kembalikan JSON dengan items: [{ name, price, quantity }]. price adalah harga per item, quantity adalah angka bulat.",
+                },
+                {
+                  type: "image",
+                  image: Buffer.from(base64Payload, "base64"),
+                },
+              ],
+            },
+          ],
+        }),
+      "ocr",
+      session.user.id,
+      "gemini-2.5-flash",
+    );
 
-  return result.object;
+    receiptAiCache.set(hash, {
+      object: result.object,
+      expiresAt: now + 24 * 60 * 60 * 1000,
+    });
+
+    return result.object;
+  } catch (error: any) {
+    const statusCode = error?.cause?.statusCode;
+    const message = error?.cause?.message || error?.message || "";
+    if (statusCode === 429 || message.includes("quota")) {
+      throw new Error("AI_RATE_LIMIT");
+    }
+    throw error;
+  }
 }
 
 export async function deleteReceipt(receiptId: number) {

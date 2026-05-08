@@ -4,6 +4,7 @@ import { auth } from "@/auth";
 import { getReceipts } from "./receipts";
 import { generateText } from "ai";
 import { google } from "@ai-sdk/google";
+import { measureApiCall } from "@/app/lib/ai-instrumentation";
 
 export type TimePeriod = "weekly" | "monthly" | "12months";
 
@@ -164,6 +165,10 @@ const buildFallbackInsights = (
   return { revenue, bestSelling };
 };
 
+/**
+ * Generate dashboard insights with token tracking.
+ * Estimated token cost: ~1300 tokens avg, no cache currently.
+ */
 const generateInsights = async (params: {
   growthRate: number;
   todayRevenue: number;
@@ -192,10 +197,16 @@ BestSellingInsight: <teks>
 `;
 
   try {
-    const { text } = await generateText({
-      model: google("gemini-2.5-flash"),
-      prompt,
-    });
+    const { text } = await measureApiCall(
+      () =>
+        generateText({
+          model: google("gemini-2.5-flash"),
+          prompt,
+        }),
+      "dashboard",
+      session.user.id,
+      "gemini-2.5-flash",
+    );
 
     const revenueMatch = text.match(/RevenueInsight:\s*(.+)/i);
     const bestSellingMatch = text.match(/BestSellingInsight:\s*(.+)/i);
