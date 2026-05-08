@@ -9,7 +9,7 @@ Requirements for initial release of this milestone.
 
 ### AI Optimization (OPT)
 
-- [ ] **OPT-01**: Map and log current AI usage bottlenecks (Token volume, queries) in existing features.
+- [x] **OPT-01**: Map and log current AI usage bottlenecks (Token volume, queries) in existing features.
 - [ ] **OPT-02**: Implement a caching layer (`unstable_cache` or Upstash Redis) for duplicate/deterministic AI predictions.
 - [ ] **OPT-03**: Refactor heavy AI prompts and parsing to use structured outputs (`generateObject` with Zod) to reduce token payload.
 - [ ] **OPT-04**: Decouple heavy background task invocations from blocking synchronous Next.js Server Actions.
@@ -53,7 +53,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| OPT-01 | Phase 1 | Pending |
+| OPT-01 | Phase 1 | Complete |
 | OPT-02 | Phase 2 | Pending |
 | OPT-03 | Phase 2 | Pending |
 | OPT-04 | Phase 2 | Pending |
