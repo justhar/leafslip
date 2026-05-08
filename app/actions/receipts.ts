@@ -4,7 +4,8 @@ import { auth } from "@/auth";
 import { getDb } from "@/db";
 import { receipts, receiptItems, products } from "@/db/schema";
 import { eq, desc, sql } from "drizzle-orm";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
+import { unstable_after } from "next/server";
 import { generateObject } from "ai";
 import { google } from "@ai-sdk/google";
 import { z } from "zod";
@@ -182,6 +183,16 @@ export async function createReceipt(data: {
 
   revalidatePath("/dashboard/history");
   revalidatePath("/dashboard/products");
+  
+  unstable_after(async () => {
+    try {
+      revalidateTag(`dashboard-${session.user.id}`);
+      // The frontend will lazily re-warm it, or we could call it here.
+    } catch (e) {
+      console.error(e);
+    }
+  });
+
   return {
     success: true,
     receiptId: newReceipt.id,

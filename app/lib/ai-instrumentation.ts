@@ -40,6 +40,8 @@ export async function countTokens(text: string, model: string): Promise<number> 
   return estimateTokens(text, model);
 }
 
+import { unstable_after } from "next/server";
+
 export async function logTokenUsage(
   userId: string,
   callSite: AICallSite,
@@ -48,20 +50,22 @@ export async function logTokenUsage(
   model: string,
   durationMs = 0,
 ): Promise<void> {
-  try {
-    const db = getDb();
-    await db.insert(tokenUsageLog).values({
-      userId,
-      callSite,
-      model,
-      inputTokens: Math.max(0, Math.round(inputTokens)),
-      outputTokens: Math.max(0, Math.round(outputTokens)),
-      totalTokens: Math.max(0, Math.round(inputTokens + outputTokens)),
-      durationMs: Math.max(0, Math.round(durationMs)),
-    });
-  } catch (error) {
-    console.warn("Failed to log AI token usage", error);
-  }
+  unstable_after(async () => {
+    try {
+      const db = getDb();
+      await db.insert(tokenUsageLog).values({
+        userId,
+        callSite,
+        model,
+        inputTokens: Math.max(0, Math.round(inputTokens)),
+        outputTokens: Math.max(0, Math.round(outputTokens)),
+        totalTokens: Math.max(0, Math.round(inputTokens + outputTokens)),
+        durationMs: Math.max(0, Math.round(durationMs)),
+      });
+    } catch (error) {
+      console.warn("Failed to log AI token usage", error);
+    }
+  });
 }
 
 export async function measureApiCall<T>(

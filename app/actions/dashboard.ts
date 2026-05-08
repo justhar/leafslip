@@ -5,6 +5,7 @@ import { getReceipts } from "./receipts";
 import { generateText } from "ai";
 import { google } from "@ai-sdk/google";
 import { measureApiCall } from "@/app/lib/ai-instrumentation";
+import { unstable_cache } from "next/cache";
 
 export type TimePeriod = "weekly" | "monthly" | "12months";
 
@@ -175,6 +176,7 @@ const generateInsights = async (params: {
   todaySales: number;
   cashflowAmount: number;
   bestSellingWeekly: Array<{ name: string; sold: number }>;
+  userId: string;
 }) => {
   if (!process.env.GOOGLE_GENERATIVE_AI_API_KEY) {
     return buildFallbackInsights(params.growthRate, params.bestSellingWeekly);
@@ -204,7 +206,7 @@ BestSellingInsight: <teks>
           prompt,
         }),
       "dashboard",
-      session.user.id,
+      params.userId,
       "gemini-2.5-flash",
     );
 
@@ -290,7 +292,13 @@ export async function getDashboardSummary(): Promise<DashboardSummary> {
   const todayRevenue = sumRevenueFromReceipts(receipts, todayStart, todayEnd);
   const todaySales = sumItemsFromReceipts(receipts, todayStart, todayEnd);
 
-  const insights = await generateInsights({
+  const cachedGenerateInsights = unstable_cache(
+    async (p: any) => generateInsights(p),
+    [`dashboard-insights-${session.user.id}`],
+    { tags: [`dashboard-${session.user.id}`], revalidate: 86400 }
+  );
+
+  const insights = await cachedGenerateInsights({
     growthRate: Number(growthRate.toFixed(1)),
     todayRevenue,
     todaySales,
@@ -300,6 +308,7 @@ export async function getDashboardSummary(): Promise<DashboardSummary> {
       addDays(todayStart, -6),
       todayEnd,
     ),
+    userId: session.user.id,
   });
 
   return {

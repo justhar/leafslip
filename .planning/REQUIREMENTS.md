@@ -16,7 +16,7 @@ Requirements for initial release of this milestone.
 
 ### Surplus Marketplace (MARKET)
 
-- [ ] **MARKET-01**: Create dedicated `surplus_listings` database schema.
+- [x] **MARKET-01**: Create dedicated `surplus_listings` database schema.
 - [ ] **MARKET-02**: MSME Dashboard UI to convert/allocate existing inventory to surplus with custom expiration and discounted price.
 - [ ] **MARKET-03**: MSME Dashboard UI to add manual surplus items independent of generic inventory tracking.
 - [ ] **MARKET-04**: Public marketplace viewing interface (isolated non-auth route) that fetches and displays active listings.
@@ -24,7 +24,7 @@ Requirements for initial release of this milestone.
 ### Guest Appointments (GUEST)
 
 - [ ] **GUEST-01**: Provide a frictionless reservation button on public surplus listings.
-- [ ] **GUEST-02**: System tracks reservations in `surplus_reservations` table (guest basic details, listing, quantity, status).
+- [x] **GUEST-02**: System tracks reservations in `surplus_reservations` table (guest basic details, listing, quantity, status).
 - [ ] **GUEST-03**: Add dashboard view for MSMEs to manage open reservations and mark them as fulfilling (store pickup complete).
 - [ ] **GUEST-04**: Basic rate-limit or protection layer against bot abuse for guest booking.
 
@@ -57,12 +57,12 @@ Which phases cover which requirements. Updated during roadmap creation.
 | OPT-02 | Phase 2 | Pending |
 | OPT-03 | Phase 2 | Pending |
 | OPT-04 | Phase 2 | Pending |
-| MARKET-01 | Phase 1 | Pending |
+| MARKET-01 | Phase 1 | Complete |
 | MARKET-02 | Phase 3 | Pending |
 | MARKET-03 | Phase 3 | Pending |
 | MARKET-04 | Phase 4 | Pending |
 | GUEST-01 | Phase 4 | Pending |
-| GUEST-02 | Phase 1 | Pending |
+| GUEST-02 | Phase 1 | Complete |
 | GUEST-03 | Phase 3 | Pending |
 | GUEST-04 | Phase 4 | Pending |
 

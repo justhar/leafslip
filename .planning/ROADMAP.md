@@ -1,7 +1,7 @@
 ## Phases
 
 - [x] **Phase 1: Database & AI Optimization Setup** - Establish schema and optimization foundation.
-- [ ] **Phase 2: Core AI Optimization Application** - Refactoring AI logic and background tasks.
+- [x] **Phase 2: Core AI Optimization Application** - Refactoring AI logic and background tasks.
 - [ ] **Phase 3: Surplus Marketplace Backend & UI** - MSME Dashboard for creating listings.
 - [ ] **Phase 4: Guest Marketplace & Appointments** - Public view and booking flow.
 

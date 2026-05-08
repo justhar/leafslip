@@ -139,9 +139,11 @@ export default function ReceiptScanner({
       alert("Tunggu sebentar sebelum scan lagi ya.");
       return;
     }
+
     setIsProcessing(true);
     setSaveError(null);
     setLastScanAt(now);
+
     try {
       const compressed = await compressImage(base64Data);
       const result = await extractReceiptItems(compressed);
@@ -173,6 +175,22 @@ export default function ReceiptScanner({
         category: "Other",
       });
     } catch (error) {
+      const message =
+        error instanceof Error ? error.message : "Gagal memproses struk.";
+      if (message.includes("AI_RATE_LIMIT")) {
+        setSaveError(
+          "Limit AI tercapai. Kamu tetap bisa input struk secara manual.",
+        );
+        setPendingReceipt({
+          id: Math.random().toString(36).substr(2, 9),
+          date: new Date().toISOString().slice(0, 10),
+          merchantName: "Input Manual",
+          items: [{ name: "", quantity: 1, unitPrice: 0, total: 0 }],
+          grandTotal: 0,
+          category: "Other",
+        });
+        return;
+      }
       alert("Gagal memproses struk. Coba foto yang lebih jelas.");
     } finally {
       setIsProcessing(false);

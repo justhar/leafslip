@@ -1,4 +1,5 @@
 import {
+  index,
   timestamp,
   pgTable,
   text,
@@ -140,3 +141,85 @@ export const aiInsights = pgTable("ai_insights", {
   stockRange: varchar("stock_range", { length: 50 }),
   createdAt: timestamp("created_at").defaultNow(),
 });
+
+export const tokenUsageLog = pgTable(
+  "token_usage_log",
+  {
+    id: serial("id").primaryKey(),
+    userId: uuid("user_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    callSite: varchar("call_site", { length: 50 }).notNull(),
+    model: varchar("model", { length: 100 }).notNull(),
+    inputTokens: integer("input_tokens").notNull(),
+    outputTokens: integer("output_tokens").notNull(),
+    totalTokens: integer("total_tokens").notNull(),
+    durationMs: integer("duration_ms").notNull(),
+    createdAt: timestamp("created_at").defaultNow(),
+  },
+  (table) => [
+    index("token_usage_log_user_created_idx").on(table.userId, table.createdAt),
+    index("token_usage_log_call_site_created_idx").on(
+      table.callSite,
+      table.createdAt,
+    ),
+  ],
+);
+
+export const surplusListings = pgTable(
+  "surplus_listings",
+  {
+    id: serial("id").primaryKey(),
+    userId: uuid("user_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    productId: integer("product_id").references(() => products.id, {
+      onDelete: "set null",
+    }),
+    sourceType: varchar("source_type", { length: 20 }).notNull().default("manual"),
+    title: varchar("title", { length: 255 }).notNull(),
+    description: text("description"),
+    unitLabel: varchar("unit_label", { length: 50 }).notNull().default("item"),
+    quantity: integer("quantity").notNull(),
+    remainingQuantity: integer("remaining_quantity").notNull(),
+    price: decimal("price", { precision: 10, scale: 2 }).notNull(),
+    status: varchar("status", { length: 20 }).notNull().default("active"),
+    expiresAt: timestamp("expires_at").notNull(),
+    createdAt: timestamp("created_at").defaultNow(),
+    updatedAt: timestamp("updated_at").defaultNow(),
+  },
+  (table) => [
+    index("surplus_listings_user_status_idx").on(table.userId, table.status),
+    index("surplus_listings_product_idx").on(table.productId),
+    index("surplus_listings_expires_idx").on(table.expiresAt),
+  ],
+);
+
+export const surplusReservations = pgTable(
+  "surplus_reservations",
+  {
+    id: serial("id").primaryKey(),
+    listingId: integer("listing_id")
+      .notNull()
+      .references(() => surplusListings.id, { onDelete: "cascade" }),
+    guestName: varchar("guest_name", { length: 255 }).notNull(),
+    guestEmail: varchar("guest_email", { length: 255 }),
+    guestPhone: varchar("guest_phone", { length: 30 }),
+    confirmationCode: varchar("confirmation_code", { length: 32 }).notNull().unique(),
+    quantity: integer("quantity").notNull(),
+    status: varchar("status", { length: 20 }).notNull().default("pending"),
+    pickupAt: timestamp("pickup_at"),
+    expiresAt: timestamp("expires_at").notNull(),
+    notes: text("notes"),
+    createdAt: timestamp("created_at").defaultNow(),
+    updatedAt: timestamp("updated_at").defaultNow(),
+  },
+  (table) => [
+    index("surplus_reservations_listing_status_idx").on(
+      table.listingId,
+      table.status,
+    ),
+    index("surplus_reservations_confirmation_code_idx").on(table.confirmationCode),
+    index("surplus_reservations_expires_idx").on(table.expiresAt),
+  ],
+);
