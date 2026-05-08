@@ -21,15 +21,15 @@ progress:
 
 ## Current Position
 
-Phase: 03 (surplus-marketplace-backend-ui) — COMPLETED
+Phase: 04 (guest-marketplace-appointments-ui) — COMPLETED
 Plan: 1 of 1
-**Phase:** Phase 3: Surplus Marketplace Backend & UI
+**Phase:** Phase 4: Guest Marketplace & Appointments UI
 **Plan:** 1/1 complete
-**Status:** Completed Phase 03
+**Status:** Completed Phase 04
 
 ## Performance Metrics
 
-- **Completed Phases:** 3
+- **Completed Phases:** 4
 - **Total Phases:** 4
 - **Coverage:** 100%
 
@@ -46,10 +46,11 @@ Plan: 1 of 1
 - Used `unstable_after` in telemetry and createReceipt to avoid blocking AI generation on the user's thread.
 - Implemented Surplus backend with auto-stock deduction when linking a listing to a main product.
 - Decided on Pay on Pickup and 6-character confirmation codes for the reservation flow.
+- Chose public `/market` storefront with simple search and no login requirement for guests.
 
 ### Todos
 
-- Plan Phase 4
+- All phases complete! Run `/gsd-complete-milestone` to wrap up.
 
 ### Blockers
 
@@ -57,5 +58,5 @@ Plan: 1 of 1
 
 ## Session Continuity
 
-- Completed Phase 03
-- Ready for `/gsd-autonomous` Phase 4
+- Completed Phase 04
+- Ready for `/gsd-complete-milestone`
