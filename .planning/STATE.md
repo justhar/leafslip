@@ -22,9 +22,9 @@ progress:
 ## Current Position
 
 Phase: 01 (database-ai-optimization) — EXECUTING
-Plan: 2 of 4
+Plan: 3 of 4
 **Phase:** Phase 1: Database & AI Optimization Setup
-**Plan:** 1/4 complete
+**Plan:** 2/4 complete
 **Status:** Executing Phase 01
 
 ## Performance Metrics
@@ -39,6 +39,7 @@ Plan: 2 of 4
 
 - Separated surplus tables for cleaner data model.
 - Add fallback logging for token usage so app doesn't crash if db not present.
+- Added token estimates as JSDoc on all instrumented functions.
 
 ### Todos
 
@@ -50,5 +51,5 @@ Plan: 2 of 4
 
 ## Session Continuity
 
-- Completed 01-01-PLAN.md
-- Ready for 01-02-PLAN.md
+- Completed 01-02-PLAN.md
+- Ready for 01-03-PLAN.md
