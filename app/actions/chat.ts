@@ -7,6 +7,7 @@ import { and, asc, desc, eq, gte } from "drizzle-orm";
 import { generateText, type ModelMessage } from "ai";
 import { google } from "@ai-sdk/google";
 import { sql } from "drizzle-orm";
+import { measureApiCall } from "@/app/lib/ai-instrumentation";
 
 export type ChatMessage = {
   role: "user" | "assistant";
@@ -97,6 +98,10 @@ const buildSalesContext = async (userId: string) => {
   return contextLines.join("\n");
 };
 
+/**
+ * Chat endpoint with token instrumentation.
+ * Estimated token cost: ~1500 tokens avg per call.
+ */
 export async function sendChatMessage(messages: ChatMessage[]) {
   const session = await auth();
   if (!session?.user?.id) {
@@ -128,11 +133,18 @@ ${context}`;
   }
 
   try {
-    const { text } = await generateText({
-      model: google("gemini-2.5-flash"),
-      system,
-      messages: modelMessages,
-    });
+    const { text } = await measureApiCall(
+      () =>
+        generateText({
+          model: google("gemini-2.5-flash"),
+          system,
+          messages: modelMessages,
+          maxRetries: 0,
+        }),
+      "chat",
+      session.user.id,
+      "gemini-2.5-flash",
+    );
 
     return text || "Maaf, saya belum bisa menjawab saat ini.";
   } catch (error) {
