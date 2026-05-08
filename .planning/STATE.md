@@ -21,15 +21,15 @@ progress:
 
 ## Current Position
 
-Phase: 02 (core-ai-optimization-application) — COMPLETED
+Phase: 03 (surplus-marketplace-backend-ui) — COMPLETED
 Plan: 1 of 1
-**Phase:** Phase 2: Core AI Optimization Application
+**Phase:** Phase 3: Surplus Marketplace Backend & UI
 **Plan:** 1/1 complete
-**Status:** Completed Phase 02
+**Status:** Completed Phase 03
 
 ## Performance Metrics
 
-- **Completed Phases:** 2
+- **Completed Phases:** 3
 - **Total Phases:** 4
 - **Coverage:** 100%
 
@@ -44,10 +44,12 @@ Plan: 1 of 1
 - Established Phase 2 optimization roadmap.
 - Chose `unstable_cache` with a 24h revalidate for Dashboard Insights instead of database.
 - Used `unstable_after` in telemetry and createReceipt to avoid blocking AI generation on the user's thread.
+- Implemented Surplus backend with auto-stock deduction when linking a listing to a main product.
+- Decided on Pay on Pickup and 6-character confirmation codes for the reservation flow.
 
 ### Todos
 
-- Plan Phase 3
+- Plan Phase 4
 
 ### Blockers
 
@@ -55,5 +57,5 @@ Plan: 1 of 1
 
 ## Session Continuity
 
-- Completed Phase 02
-- Ready for `/gsd-autonomous` Phase 3
+- Completed Phase 03
+- Ready for `/gsd-autonomous` Phase 4

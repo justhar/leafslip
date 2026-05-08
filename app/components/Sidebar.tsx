@@ -15,6 +15,7 @@ import {
   MessageSquare,
   X,
   User as UserIcon,
+  Tag,
 } from "lucide-react";
 
 interface SidebarProps {
@@ -63,6 +64,12 @@ export default function Sidebar({
       label: "Produk",
       icon: <TrendingUp size={20} />,
       href: "/dashboard/products",
+    },
+    {
+      id: "surplus" as AppView,
+      label: "Surplus",
+      icon: <Tag size={20} />,
+      href: "/dashboard/surplus",
     },
     {
       id: "chatbot" as AppView,

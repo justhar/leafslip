@@ -43,5 +43,7 @@ export type AppView =
   | "scanner"
   | "recommender"
   | "history"
+  | "products"
+  | "surplus"
   | "chatbot";
 export type TimePeriod = "weekly" | "monthly" | "yearly";
