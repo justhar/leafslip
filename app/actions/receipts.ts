@@ -5,7 +5,6 @@ import { getDb } from "@/db";
 import { receipts, receiptItems, products } from "@/db/schema";
 import { eq, desc, sql } from "drizzle-orm";
 import { revalidatePath, revalidateTag } from "next/cache";
-import { unstable_after } from "next/server";
 import { generateObject } from "ai";
 import { google } from "@ai-sdk/google";
 import { z } from "zod";
@@ -14,7 +13,10 @@ import { measureApiCall } from "@/app/lib/ai-instrumentation";
 
 const receiptAiCache = new Map<
   string,
-  { object: { items: Array<{ name: string; price: number; quantity: number }> }; expiresAt: number }
+  {
+    object: { items: Array<{ name: string; price: number; quantity: number }> };
+    expiresAt: number;
+  }
 >();
 const receiptAiLastCall = new Map<string, number>();
 
@@ -183,15 +185,7 @@ export async function createReceipt(data: {
 
   revalidatePath("/dashboard/history");
   revalidatePath("/dashboard/products");
-  
-  unstable_after(async () => {
-    try {
-      revalidateTag(`dashboard-${session.user.id}`);
-      // The frontend will lazily re-warm it, or we could call it here.
-    } catch (e) {
-      console.error(e);
-    }
-  });
+  revalidateTag(`dashboard-${session.user.id}`, "default");
 
   return {
     success: true,
