@@ -124,7 +124,7 @@ export default function StockInsights({ receipts }: StockInsightsProps) {
 
       <div className="mt-8 pt-4 border-t border-gray-50">
         <p className="text-[8px] text-gray-300 uppercase font-black tracking-[0.2em] text-center">
-          Prediktor Cerdas Leafslip
+          Prediktor Cerdas Greenslip
         </p>
       </div>
     </div>

@@ -96,7 +96,7 @@ export default function Marketplace() {
               <Leaf size={20} />
             </div>
             <h1 className="font-bold tracking-tight text-lg">
-              LeafSlip Marketplace
+              GreenSlip Marketplace
             </h1>
           </div>
         </div>

@@ -16,7 +16,7 @@ export default function ServicesSection() {
             <h2 className="text-4xl md:text-5xl font-bold leading-tight">
               Jelajahi Layanan
               <br />
-              Leafslip
+              Greenslip
             </h2>
           </div>
           <button className="bg-transparent border border-gray-200 px-6 py-2.5 rounded-full font-bold text-sm hover:bg-gray-50 transition-colors">

@@ -11,7 +11,7 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "LeafSlip - Cerdas Kelola Stok UMKM",
+  title: "GreenSlip - Cerdas Kelola Stok UMKM",
   description: "Pemindaian struk dan rekomendasi AI untuk menekan overstocking UMKM",
 };
 

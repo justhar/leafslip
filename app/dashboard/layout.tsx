@@ -30,7 +30,7 @@ export default function DashboardLayout({
           <div className="text-[#D9ED92] bg-[#2D3E2D] p-1 rounded">
             <Leaf size={14} />
           </div>
-          <span className="uppercase tracking-widest font-bold">LEAFSLIP</span>
+          <span className="uppercase tracking-widest font-bold">GREENSLIP</span>
         </div>
         <button
           onClick={() => setIsSidebarOpen(true)}

@@ -279,7 +279,7 @@ export default function ReceiptScanner({
       });
       if (result?.newProductNames?.length) {
         localStorage.setItem(
-          "leafslip:newProducts",
+          "greenslip:newProducts",
           JSON.stringify({
             names: result.newProductNames,
             at: Date.now(),

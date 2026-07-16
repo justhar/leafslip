@@ -36,7 +36,7 @@ export default function Sidebar({
 
   const displayUser = session?.user || {
     name: "Tamu",
-    email: "tamu@leafslip.com",
+    email: "tamu@greenslip.com",
     image: null,
   };
 
@@ -91,7 +91,7 @@ export default function Sidebar({
           <Leaf size={18} />
         </div>
         <span className="text-[8px] tracking-[0.2em] hidden lg:block uppercase font-black text-gray-300">
-          LEAF
+          GREENSLIP
         </span>
 
         {onClose && (

@@ -25,14 +25,14 @@ export default function CTASection() {
           </h2>
           <p className="text-lg text-gray-200 mb-10 font-light leading-relaxed">
             Lindungi bisnis dari stok menumpuk, optimalkan perputaran barang,
-            dan gunakan rekomendasi AI Leafslip untuk keputusan belanja yang
+            dan gunakan rekomendasi AI Greenslip untuk keputusan belanja yang
             lebih tepat.
           </p>
           <Link
             href="/dashboard"
             className="bg-[#D9ED92] text-[#2D3E2D] px-10 py-4 rounded-full font-bold text-lg hover:brightness-110 transition-all shadow-2xl inline-block"
           >
-            Mulai Pakai Leafslip
+            Mulai Pakai Greenslip
           </Link>
         </div>
       </div>

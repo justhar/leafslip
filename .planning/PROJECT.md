@@ -1,7 +1,7 @@
-# Project: LeafSlip AI Optimization & Surplus Marketplace
+# Project: GreenSlip AI Optimization & Surplus Marketplace
 
 ## What This Is
-An extension of the existing LeafSlip platform (An AI-Integrated End-to-End Overstocking & Food Waste Management Platform for MSMEs). The goal of this milestone is twofold:
+An extension of the existing GreenSlip platform (An AI-Integrated End-to-End Overstocking & Food Waste Management Platform for MSMEs). The goal of this milestone is twofold:
 1. **AI Optimization:** The current AI usage (OCR for receipts, sales predictions, etc.) is suffering from high token usage and query volume. We will optimize this by analyzing current invocations, reducing redundant calls, using lighter models where appropriate, and potentially caching/batching.
 2. **Surplus Marketplace:** A simple, trust-based marketplace guest feature to recover costs from overstocking. MSMEs can list surplus items, and guests can book pickup appointments without logging in or processing payments upfront.
 

@@ -12,7 +12,7 @@ export default function FullChatbot() {
   >([
     {
       role: "bot",
-      text: "Halo! Saya Advisor Bisnis Leafslip Anda. Bagaimana saya bisa membantu mengoptimalkan bisnis Anda hari ini?",
+      text: "Halo! Saya Advisor Bisnis Greenslip Anda. Bagaimana saya bisa membantu mengoptimalkan bisnis Anda hari ini?",
     },
   ]);
   const [input, setInput] = useState("");

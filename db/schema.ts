@@ -87,7 +87,7 @@ export const authenticators = pgTable(
 );
 
 // ============================================
-// Application Tables (LeafSlip)
+// Application Tables (GreenSlip)
 // ============================================
 
 export const receipts = pgTable("receipts", {

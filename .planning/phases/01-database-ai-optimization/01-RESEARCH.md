@@ -6,7 +6,7 @@
 
 ## Summary
 
-LeafSlip currently uses Google Gemini 2.5-flash across three primary AI integration points: receipt OCR, product inventory insights, and conversational chat. Analysis of the codebase reveals **estimated token consumption of 17,000–47,000 tokens per active user daily**, with optimization opportunities in caching strategies, model selection, batching, and structured output refinement.
+GreenSlip currently uses Google Gemini 2.5-flash across three primary AI integration points: receipt OCR, product inventory insights, and conversational chat. Analysis of the codebase reveals **estimated token consumption of 17,000–47,000 tokens per active user daily**, with optimization opportunities in caching strategies, model selection, batching, and structured output refinement.
 
 The platform has solid foundations: client-side hash-based caching for receipt OCR and a 24-hour database cache for product insights. However, chat history is not cached, dashboard insights lack TTL optimization, and several calls could benefit from async background processing.
 
@@ -417,7 +417,7 @@ const { text, usage } = await generateText({...});
 ## Sources
 
 ### Primary (HIGH confidence)
-- LeafSlip codebase analysis: `app/actions/chat.ts`, `app/actions/receipts.ts`, `app/actions/products.ts`, `app/actions/dashboard.ts`
+- GreenSlip codebase analysis: `app/actions/chat.ts`, `app/actions/receipts.ts`, `app/actions/products.ts`, `app/actions/dashboard.ts`
 - Drizzle ORM docs: schema patterns for cascading deletes, indexing strategy
 - Google Gemini API docs: model pricing, token counting, vision capabilities
 - Vercel AI SDK docs: `generateText()`, `generateObject()`, structured output support

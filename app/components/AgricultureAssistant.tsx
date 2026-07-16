@@ -9,7 +9,7 @@ export default function AgricultureAssistant() {
   >([
     {
       role: "bot",
-      text: "Halo! Saya asisten UMKM Leafslip. Butuh bantuan mengelola stok, mencegah overstocking, atau membaca data penjualan?",
+      text: "Halo! Saya asisten UMKM Greenslip. Butuh bantuan mengelola stok, mencegah overstocking, atau membaca data penjualan?",
     },
   ]);
   const [input, setInput] = useState("");
@@ -39,7 +39,7 @@ export default function AgricultureAssistant() {
         contents: userMsg,
         config: {
           systemInstruction:
-            "Kamu adalah Leafslip AI, konsultan UMKM di Indonesia. Bantu pemilik usaha mengoptimalkan stok, mencegah overstocking, dan memahami data penjualan dari struk. Gunakan Bahasa Indonesia yang profesional namun santai. Gunakan Rupiah (Rp) dan konteks lokal bila relevan.",
+            "Kamu adalah Greenslip AI, konsultan UMKM di Indonesia. Bantu pemilik usaha mengoptimalkan stok, mencegah overstocking, dan memahami data penjualan dari struk. Gunakan Bahasa Indonesia yang profesional namun santai. Gunakan Rupiah (Rp) dan konteks lokal bila relevan.",
         },
       });
 
@@ -73,7 +73,7 @@ export default function AgricultureAssistant() {
                 <Leaf className="w-5 h-5" />
               </div>
               <div>
-                <h4 className="font-bold text-sm">Advisor Leafslip</h4>
+                <h4 className="font-bold text-sm">Advisor Greenslip</h4>
                 <div className="flex items-center gap-1.5">
                   <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
                   <span className="text-[10px] text-gray-300">Aktif</span>

@@ -1,7 +1,7 @@
 import SurplusDashboard from "@/app/components/SurplusDashboard";
 
 export const metadata = {
-  title: "Surplus Market - LeafSlip",
+  title: "Surplus Market - GreenSlip",
   description: "Kelola stok surplus dan promosikan diskon",
 };
 

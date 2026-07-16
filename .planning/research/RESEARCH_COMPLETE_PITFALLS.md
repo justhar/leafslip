@@ -1,6 +1,6 @@
 ## RESEARCH COMPLETE
 
-**Project:** leafslip
+**Project:** greenslip
 **Mode:** ecosystem
 **Confidence:** HIGH
 

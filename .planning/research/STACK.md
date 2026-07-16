@@ -1,6 +1,6 @@
 # Technology Stack
 
-**Project:** Leafslip (AI overstocking & food waste management MSME platform)
+**Project:** Greenslip (AI overstocking & food waste management MSME platform)
 **Researched:** May 8, 2026
 
 ## Recommended Stack additions

@@ -5,7 +5,7 @@
 ## Directory Layout
 
 ```
-/home/dev/projects/dev/leafslip/
+/home/dev/projects/dev/greenslip/
 ├── app/                  # Next.js App Router (Routing, Pages, Actions, Components)
 ├── db/                   # Database logic (Schema, Client instantiation, Seeding)
 ├── drizzle/              # Drizzle ORM Migrations folder

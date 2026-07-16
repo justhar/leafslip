@@ -55,7 +55,7 @@ export default function FeatureSection() {
               Lebih Dari Sekadar Scan
             </h3>
             <p className="text-xl text-gray-600 leading-relaxed font-light">
-              Leafslip menutup "celah kertas" untuk UMKM Indonesia. Dengan
+              Greenslip menutup "celah kertas" untuk UMKM Indonesia. Dengan
               mengubah struk manual menjadi data digital yang bisa ditindak,
               UMKM mendapat kekuatan analitik setara bisnis besar. Tidak ada
               lagi catatan hilang atau stok menebak-nebak—hanya insight AI yang
@@ -64,7 +64,7 @@ export default function FeatureSection() {
 
             <div className="space-y-6 pt-4">
               <h3 className="text-2xl font-bold">
-                Kenapa UMKM Memilih Leafslip
+                Kenapa UMKM Memilih Greenslip
               </h3>
               <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {BENEFITS.map((benefit) => (

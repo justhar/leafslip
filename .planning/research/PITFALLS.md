@@ -1,6 +1,6 @@
 # Domain Pitfalls
 
-**Domain:** leafslip
+**Domain:** greenslip
 **Researched:** May 8, 2026
 
 ## Critical Pitfalls

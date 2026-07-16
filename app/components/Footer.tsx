@@ -19,7 +19,7 @@ export default function Footer({ scrollToTop }: FooterProps) {
               <div className="text-[#D9ED92]">
                 <Leaf size={20} />
               </div>
-              <span>LEAFSLIP</span>
+              <span>GREENSLIP</span>
             </div>
 
             <div className="space-y-4 max-w-md">

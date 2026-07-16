@@ -1,7 +1,7 @@
 import Marketplace from "@/app/components/Marketplace";
 
 export const metadata = {
-  title: "LeafSlip Market - Beli Produk Surplus",
+  title: "GreenSlip Market - Beli Produk Surplus",
   description: "Selamatkan makanan dan hemat uang dengan membeli produk surplus dari warung dan UMKM sekitarmu.",
 };
 

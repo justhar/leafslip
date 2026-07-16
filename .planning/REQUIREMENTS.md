@@ -1,4 +1,4 @@
-# Requirements: LeafSlip AI Optimization & Surplus Marketplace
+# Requirements: GreenSlip AI Optimization & Surplus Marketplace
 
 **Defined:** 2026-05-08
 **Core Value:** Reducing operational API cost while introducing an overstock recovery guest marketplace.

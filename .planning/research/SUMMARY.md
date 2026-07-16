@@ -1,13 +1,13 @@
 # Project Research Summary
 
-**Project:** leafslip
+**Project:** greenslip
 **Domain:** Guest Surplus Marketplace & AI overstocking platform
 **Researched:** May 8, 2026
 **Confidence:** HIGH
 
 ## Executive Summary
 
-Leafslip is an AI overstocking and food waste management platform for MSMEs, currently exploring a Guest Surplus Marketplace. To ensure frictionless conversion without sacrificing performance or cost-efficiency, the application leans into decoupled edge caches, public routing pathways, and structured AI optimization.
+Greenslip is an AI overstocking and food waste management platform for MSMEs, currently exploring a Guest Surplus Marketplace. To ensure frictionless conversion without sacrificing performance or cost-efficiency, the application leans into decoupled edge caches, public routing pathways, and structured AI optimization.
 
 The recommended technical approach employs Vercel AI SDK and Upstash Redis alongside automated prompt optimizers (DSPy) to dramatically reduce LLM token volume and latency. Guest checkouts are designed as ephemeral Upstash KV session stores combined with simple Stripe flows to prevent filling the relational DB with stale data. 
 

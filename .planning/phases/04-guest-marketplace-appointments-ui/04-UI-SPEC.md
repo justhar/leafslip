@@ -25,7 +25,7 @@
 ## 2. Layout & Components
 
 ### Page: `/market`
-- **Header:** LeafSlip Market logo, simple search bar.
+- **Header:** GreenSlip Market logo, simple search bar.
 - **Hero/Banner:** "Selamatkan makanan, hemat uang. Penawaran spesial dari warung sekitarmu."
 - **Grid:** Responsive grid of Item Cards.
   

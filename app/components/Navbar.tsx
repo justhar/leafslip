@@ -24,7 +24,7 @@ export default function Navbar({
           <div className="text-[#D9ED92] bg-[#2D3E2D] p-1 md:p-1.5 rounded-lg">
             <Leaf size={18} />
           </div>
-          <h1 className="font-extrabold">LEAFSLIP</h1>
+          <h1 className="font-extrabold">GREENSLIP</h1>
         </div>
 
         <div className="flex items-center gap-3">

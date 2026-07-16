@@ -14,7 +14,7 @@ export default function SignInPage() {
               <LogIn className="text-white" size={32} />
             </div>
             <h1 className="text-2xl font-black text-[#2D3E2D]">
-              Selamat Datang di LeafSlip
+              Selamat Datang di GreenSlip
             </h1>
             <p className="text-xs text-gray-500 uppercase tracking-widest font-bold">
               Pemindaian Struk & Rekomendasi Stok

@@ -81,4 +81,4 @@ export const getCachedStructuredPrediction = unstable_cache(
 ## Sources
 - Next.js Documentation (App Router caching & route groups)
 - Vercel AI SDK Documentation (`generateObject` and streaming)
-- Internal Codebase Context (`/home/dev/projects/dev/leafslip`)
+- Internal Codebase Context (`/home/dev/projects/dev/greenslip`)

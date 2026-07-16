@@ -94,7 +94,7 @@ export default function ProductsPage() {
   }, []);
 
   useEffect(() => {
-    const storedNotice = localStorage.getItem("leafslip:newProducts");
+    const storedNotice = localStorage.getItem("greenslip:newProducts");
     if (!storedNotice) return;
     try {
       const parsed = JSON.parse(storedNotice) as { names: string[] };
@@ -104,7 +104,7 @@ export default function ProductsPage() {
     } catch (parseError) {
       // ignore malformed data
     } finally {
-      localStorage.removeItem("leafslip:newProducts");
+      localStorage.removeItem("greenslip:newProducts");
     }
   }, []);
 

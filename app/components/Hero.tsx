@@ -13,7 +13,7 @@ export default function Hero() {
                 Digitalisasi UMKM Indonesia
               </span>
               <h1 className="text-6xl font-bold leading-[0.95] mb-4 tracking-tighter">
-                Leafslip:
+                Greenslip:
                 <br />
                 <span className="text-[#D9ED92]">Anti-Overstock</span> UMKM.
               </h1>

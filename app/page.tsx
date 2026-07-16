@@ -35,7 +35,7 @@ export default function App() {
   // Mock user data for Sidebar
   const mockUser = {
     name: "Pengguna Demo",
-    email: "demo@leafslip.com",
+    email: "demo@greenslip.com",
     avatar: "https://i.pravatar.cc/150?u=demo",
     role: "Pemilik UMKM",
   };
@@ -66,7 +66,7 @@ export default function App() {
           <div className="text-[#D9ED92] bg-[#2D3E2D] p-1 rounded">
             <Leaf size={14} />
           </div>
-          <span className="uppercase tracking-widest font-bold">LEAFSLIP</span>
+          <span className="uppercase tracking-widest font-bold">GREENSLIP</span>
         </div>
         <button
           onClick={() => setIsSidebarOpen(true)}

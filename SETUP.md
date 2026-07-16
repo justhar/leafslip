@@ -1,4 +1,4 @@
-# LeafSlip - Smart Agriculture Tracking
+# GreenSlip - Smart Agriculture Tracking
 
 ## 🚀 Setup Instructions
 
@@ -11,7 +11,7 @@
 ### 1. Create Neon Database
 
 1. Go to https://console.neon.tech and sign in
-2. Create a new project named "leafslip"
+2. Create a new project named "greenslip"
 3. Select your preferred region (e.g., AWS US East 2)
 4. Copy the **Pooled Connection String** from the dashboard
 
@@ -20,7 +20,7 @@
 1. Go to https://console.developers.google.com/apis/credentials
 2. Create a new OAuth 2.0 Client ID
 3. Add authorized redirect URIs:
-   - Development: `https://leafslip.vercel.app/api/auth/callback/google`
+   - Development: `https://greenslip.vercel.app/api/auth/callback/google`
    - Production: `https://your-domain.vercel.app/api/auth/callback/google`
 4. Copy the Client ID and Client Secret
 
@@ -38,7 +38,7 @@
    DATABASE_URL="your-neon-pooled-connection-string"
    AUTH_GOOGLE_ID="your-google-client-id"
    AUTH_GOOGLE_SECRET="your-google-client-secret"
-   NEXTAUTH_URL="https://leafslip.vercel.app"
+   NEXTAUTH_URL="https://greenslip.vercel.app"
    ```
 
 3. Generate AUTH_SECRET:
@@ -66,11 +66,11 @@ This creates:
 npm run dev
 ```
 
-Visit https://leafslip.vercel.app
+Visit https://greenslip.vercel.app
 
 ### 6. Sign In and Seed Data
 
-1. Click "Sign In with Google" at https://leafslip.vercel.app/signin
+1. Click "Sign In with Google" at https://greenslip.vercel.app/signin
 2. Complete Google OAuth flow
 3. After signing in, find your user ID:
    - Go to Neon Console → SQL Editor
@@ -95,7 +95,7 @@ This will populate your account with:
 
 ### 7. Explore the Dashboard
 
-Visit https://leafslip.vercel.app/dashboard to see:
+Visit https://greenslip.vercel.app/dashboard to see:
 
 - ✅ User-specific receipt history
 - ✅ Protected routes with middleware
@@ -173,7 +173,7 @@ Visit https://leafslip.vercel.app/dashboard to see:
 
 - Check callback URLs match in Google Console
 - Verify `NEXTAUTH_URL` is correct
-- For local dev, use `https://leafslip.vercel.app` (no trailing slash)
+- For local dev, use `https://greenslip.vercel.app` (no trailing slash)
 
 ## 📝 Notes
 
